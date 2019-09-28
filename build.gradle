@@ -26,3 +26,23 @@ allprojects {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext{
+    //testing
+    junitVersion = "4.12"
+    runnerVersion = "1.2.0"
+    espressoVersion = "3.2.0"
+
+    //libs
+    appCompatVersion = "1.1.0"
+    lifecycleVersion = "2.1.0"
+    coreKtxVersion = "1.1.0"
+    gsonVersion = "2.8.5"
+    retrofitVersion = "2.5.0"
+    okhttpLoggingVersion = "3.12.1"
+
+    //reactiveX
+    rxJavaVersion = "2.2.12"
+    rxAndroidVersion = "2.1.1"
+    rxKotlinVersion = "2.4.0"
+}
