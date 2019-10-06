@@ -1,0 +1,13 @@
+apply from : "$rootDir/share.gradle"
+
+android {
+
+    defaultConfig{
+        vectorDrawables.useSupportLibrary = true
+    }
+}
+
+dependencies {
+
+    implementation AndroidX.appCompat
+}
