@@ -1,2 +1,6 @@
-include ':app', ':imdbmovie'
+include Modules.app, Modules.movie, Modules.coreUtils
 rootProject.name='Movies App'
+
+
+project(Modules.movie).projectDir = new File(rootDir,ModuleFilesLocation.movies)
+project(Modules.coreUtils).projectDir = new File(rootDir,ModuleFilesLocation.coreUtils)

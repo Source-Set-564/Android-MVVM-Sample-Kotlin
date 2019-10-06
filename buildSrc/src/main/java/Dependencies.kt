@@ -4,9 +4,16 @@ object Config{
     val targetSdkVersion = 29
     val compileSdkVersion = 29
     val buildToolsVersion = "29.0.0"
-    val applicationId = "sourceset564.samples.mvvm.movies"
+    val applicationId = "sourceset564.samples.mvvm.movie"
     val versionCode = 1
     val versionName = "1.0"
+}
+
+object SuffixBuildType{
+    val debug = "-dev"
+    val alpha = "-alpha"
+    val beta = "-beta"
+    val rc = "-rc"
 }
 
 object Versions{

@@ -2,7 +2,14 @@ apply from : "$rootDir/share.gradle"
 
 android {
 
+    /**
+     * Add additional configuration about this module
+     */
     defaultConfig{
+
+        versionCode 1
+        versionName "1.0"
+
         vectorDrawables.useSupportLibrary = true
     }
 }
@@ -10,4 +17,6 @@ android {
 dependencies {
 
     implementation AndroidX.appCompat
+
+    implementation project(Modules.coreUtils)
 }

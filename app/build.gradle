@@ -20,6 +20,8 @@ android {
 
         testInstrumentationRunner Testing.instrumentationRunner
         vectorDrawables.useSupportLibrary = true
+
+        resValue("string","app_name","Movies App")
     }
 
     dataBinding {
@@ -32,8 +34,18 @@ android {
     }
 
     buildTypes {
-        release {
+
+        debug {
+            shrinkResources false
             minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            versionNameSuffix SuffixBuildType.debug
+            resValue("string","app_name","Movies App - Dev")
+        }
+
+        release {
+            shrinkResources true
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

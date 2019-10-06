@@ -1,0 +1,36 @@
+apply from : "$rootDir/share.gradle"
+
+android {
+
+    /**
+     * Add additional configuration about this module
+     */
+    defaultConfig {
+
+        versionCode 1
+        versionName "1.0"
+
+        consumerProguardFiles 'consumer-rules.pro'
+    }
+
+}
+
+dependencies {
+
+    implementation AndroidX.appCompat
+    implementation AndroidX.ktx
+
+    implementation Jetpack.lifecycle
+    kapt Jetpack.lifecycleCompiler
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.rxAdapter
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+
+    implementation Media.glide
+
+    implementation ReactiveX.rxJava
+    implementation ReactiveX.rxAndroid
+    implementation ReactiveX.rxKotlin
+}
