@@ -7,15 +7,19 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 29
-    buildToolsVersion "29.0.0"
+
+    compileSdkVersion Config.compileSdkVersion
+    buildToolsVersion Config.buildToolsVersion
+
     defaultConfig {
-        applicationId "sourceset564.samples.mvvm.movies"
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        applicationId Config.applicationId
+        minSdkVersion Config.minSdkVersion
+        targetSdkVersion Config.targetSdkVersion
+        versionCode Config.versionCode
+        versionName Config.versionName
+
+        testInstrumentationRunner Testing.instrumentationRunner
+        vectorDrawables.useSupportLibrary = true
     }
 
     dataBinding {
@@ -39,40 +43,31 @@ dependencies {
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //commons libs
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:' + rootProject.appCompatVersion
-    implementation 'androidx.constraintlayout:constraintlayout:' + rootProject.constraintVersion
-    implementation 'androidx.recyclerview:recyclerview:' + rootProject.recyclerViewVersion
-    implementation 'com.google.android.material:material:' + rootProject.materialVersion
-    implementation 'androidx.cardview:cardview:' + rootProject.cardViewVersion
+    implementation AndroidX.kotlin
+    implementation AndroidX.appCompat
+    implementation AndroidX.constraintLayout
+    implementation AndroidX.recyclerView
+    implementation AndroidX.material
+    implementation AndroidX.cardView
+    implementation AndroidX.ktx
+    implementation AndroidX.gson
 
-    //architecture component
-    implementation 'androidx.core:core-ktx:' + rootProject.coreKtxVersion
-    implementation 'androidx.lifecycle:lifecycle-extensions:' + rootProject.lifecycleVersion
-    kapt 'androidx.lifecycle:lifecycle-compiler:' + rootProject.lifecycleVersion
+    implementation Jetpack.lifecycle
+    kapt Jetpack.lifecycleCompiler
 
-    //glide
-    implementation 'com.github.bumptech.glide:glide:' + rootProject.glideVersion
+    implementation Media.glide
 
-    // Google gson
-    implementation 'com.google.code.gson:gson:' + rootProject.gsonVersion
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.rxAdapter
 
-    // Retrofit
-    implementation 'com.squareup.retrofit2:retrofit:' + rootProject.retrofitVersion
-    implementation 'com.squareup.retrofit2:converter-gson:' + rootProject.retrofitVersion
-    // Retrofit ReactiveX library
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:' + rootProject.retrofitVersion
-    // ReactiveX - RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:' + rootProject.rxJavaVersion
-    implementation 'io.reactivex.rxjava2:rxkotlin:' + rootProject.rxKotlinVersion
-    implementation 'io.reactivex.rxjava2:rxandroid:' + rootProject.rxAndroidVersion
-
-    // Okhttp3
-    implementation 'com.squareup.okhttp3:logging-interceptor:' + rootProject.okhttpLoggingVersion
+    implementation ReactiveX.rxJava
+    implementation ReactiveX.rxKotlin
+    implementation ReactiveX.rxKotlin
 
     //test
-    testImplementation 'junit:junit:' + rootProject.junitVersion
-    androidTestImplementation 'androidx.test:runner:' + rootProject.runnerVersion
-    androidTestImplementation 'androidx.test.espresso:espresso-core:' + rootProject.espressoVersion
+    testImplementation Testing.jUnit
+    androidTestImplementation Testing.testRunner
+    androidTestImplementation Testing.espresso
 }
