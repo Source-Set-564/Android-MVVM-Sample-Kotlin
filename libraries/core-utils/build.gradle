@@ -19,6 +19,7 @@ dependencies {
 
     implementation AndroidX.appCompat
     implementation AndroidX.ktx
+    implementation AndroidX.gson
 
     implementation Jetpack.lifecycle
     kapt Jetpack.lifecycleCompiler

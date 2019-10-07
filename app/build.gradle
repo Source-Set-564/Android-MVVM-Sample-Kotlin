@@ -75,7 +75,7 @@ dependencies {
     implementation Retrofit.rxAdapter
 
     implementation ReactiveX.rxJava
-    implementation ReactiveX.rxKotlin
+    implementation ReactiveX.rxAndroid
     implementation ReactiveX.rxKotlin
 
     //test

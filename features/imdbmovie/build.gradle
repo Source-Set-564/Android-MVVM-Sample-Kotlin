@@ -11,6 +11,10 @@ android {
         versionName "1.0"
 
         vectorDrawables.useSupportLibrary = true
+
+        resValue("string","movie_api_key", rootProject.findProperty("movie_api_key"))
+        resValue("string","movie_base_url", rootProject.findProperty("movie_base_url"))
+        resValue("string","movie_image_url", rootProject.findProperty("movie_image_url"))
     }
 }
 
