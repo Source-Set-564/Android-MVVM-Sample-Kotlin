@@ -3,7 +3,7 @@ object Config{
     val minSdkVersion = 21
     val targetSdkVersion = 29
     val compileSdkVersion = 29
-    val buildToolsVersion = "29.0.0"
+    val buildToolsVersion = "29.0.2"
     val applicationId = "sourceset564.samples.mvvm.movie"
     val versionCode = 1
     val versionName = "1.0"
@@ -20,7 +20,7 @@ object Versions{
 
     //Commons
     val gradle = "3.5.1"
-    val kotlin = "1.3.50"
+    val kotlin = "1.3.60"
     val material = "1.0.0"
 
     //AndroidX

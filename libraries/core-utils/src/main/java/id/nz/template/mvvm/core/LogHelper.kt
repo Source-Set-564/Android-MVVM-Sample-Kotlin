@@ -16,7 +16,7 @@ object LogHelper {
     private const val ERROR = Log.ERROR
     private const val WTF = Log.ASSERT
 
-    var TAG = "LogHelper"
+    @JvmStatic var TAG = "LogHelper"
 
     private fun log(
         @IntRange(from = VERBOSE.toLong(), to = WTF.toLong()) level: Int,
