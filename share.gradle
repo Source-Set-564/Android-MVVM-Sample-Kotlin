@@ -1,4 +1,4 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 
 apply plugin: 'kotlin-android'
 
@@ -12,16 +12,10 @@ android {
     buildToolsVersion Config.buildToolsVersion
 
     defaultConfig {
-        applicationId Config.applicationId
         minSdkVersion Config.minSdkVersion
         targetSdkVersion Config.targetSdkVersion
-        versionCode Config.versionCode
-        versionName Config.versionName
 
         testInstrumentationRunner Testing.instrumentationRunner
-        vectorDrawables.useSupportLibrary = true
-
-        resValue("string","app_name","Movies App")
     }
 
     dataBinding {
@@ -35,16 +29,14 @@ android {
 
     buildTypes {
 
-        debug {
-            shrinkResources false
+        debug{
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             versionNameSuffix SuffixBuildType.debug
-            resValue("string","app_name","Movies App - Dev")
         }
 
         release {
-            shrinkResources true
+            minifyEnabled true
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
@@ -56,21 +48,14 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation AndroidX.kotlin
-    implementation AndroidX.appCompat
-    implementation AndroidX.constraintLayout
-    implementation AndroidX.material
-    implementation AndroidX.coordinatorLayout
-    implementation AndroidX.ktx
+
+    implementation Injections.dagger2
+    implementation Injections.dagger2Android
+    kapt Injections.dagger2Compiler
+    kapt Injections.dagger2Processor
 
     //test
     testImplementation Testing.jUnit
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
-
-    implementation project(Modules.movie)
-    implementation project(Modules.coreUtils)
-}
-
-repositories {
-    google()
 }

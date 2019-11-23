@@ -1,0 +1,47 @@
+apply from : "$rootDir/share.gradle"
+
+android {
+
+    /**
+     * Add additional configuration about this module
+     */
+    defaultConfig{
+
+        versionCode 1
+        versionName "1.0"
+
+        vectorDrawables.useSupportLibrary = true
+
+        resValue("string","movie_api_key", rootProject.findProperty("movie_api_key"))
+        resValue("string","movie_base_url", rootProject.findProperty("movie_base_url"))
+        resValue("string","movie_image_url", rootProject.findProperty("movie_image_url"))
+    }
+}
+
+dependencies {
+
+    implementation AndroidX.appCompat
+    implementation AndroidX.ktx
+    implementation AndroidX.constraintLayout
+    implementation AndroidX.material
+    implementation AndroidX.coordinatorLayout
+    implementation AndroidX.recyclerView
+
+    kapt AndroidX.dataBindingCompiler
+
+    implementation Skeleton.skeleton
+    implementation Skeleton.shimmer
+
+    implementation Media.glide
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.rxAdapter
+
+    implementation ReactiveX.rxJava
+    implementation ReactiveX.rxAndroid
+    implementation ReactiveX.rxKotlin
+
+    implementation project(Modules.coreUtils)
+}

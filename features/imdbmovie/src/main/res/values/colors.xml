@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorHomeTop">#5CA0D3</color>
+    <color name="colorSearchHint">#80FFFFFF</color>
+    <color name="skeleton_background">#7A596581</color>
+    <color name="color_skeleton_loading">#3F2C3848</color>
+    <color name="color_background_content">#2C3848</color>
+    <color name="colorWindowBackground">#5CA0D3</color>
+    <color name="colorDraggedIcon">#5D6E70</color>
+    <color name="colorDraggedIndicator">#232D3A</color>
+</resources>
