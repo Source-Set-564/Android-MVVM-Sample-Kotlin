@@ -25,7 +25,7 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private val list : MutableList<Movie?> = mutableListOf()
     private var isNextPageShowing = false
 
-    private var onGoingDisposable : Disposable? = null
+    private var disposable : Disposable? = null
 
     private val TYPE_ITEM = 1
     private val TYPE_NEXT = 2
@@ -33,9 +33,10 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     private var lastPositionAnimated = -1
 
     fun updateAdapter(list: List<Movie>){
-        onGoingDisposable?.dispose()
-        onGoingDisposable = Single.create<DiffUtil.DiffResult> {
-            val result = DiffUtil.calculateDiff(DiffMovieCallback(this.list,list),true)
+        disposable?.dispose()
+        disposable = Single.create<DiffUtil.DiffResult> {
+            val callback = DiffMovieCallback(this.list,list)
+            val result = DiffUtil.calculateDiff(callback,true)
             it.onSuccess(result)
         }.subscribeOn(Schedulers.computation())
             .observeOn(AndroidSchedulers.mainThread())
@@ -63,22 +64,24 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
     override fun onDetachedFromRecyclerView(recyclerView: RecyclerView) {
-        onGoingDisposable?.dispose()
+        disposable?.dispose()
         super.onDetachedFromRecyclerView(recyclerView)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == TYPE_ITEM) {
-            return ItemViewHolder(DataBindingUtil.inflate(
+            DataBindingUtil.inflate<ItemListMovieBinding>(
                 LayoutInflater.from(parent.context),
                 R.layout.item_list_movie,
                 parent,
                 false
-            ))
+            ).apply {
+                return ItemViewHolder(this)
+            }
         }else{
-            LayoutInflater.from(parent.context).inflate(R.layout.item_list_movie_next_page, parent, false)
-                .also {
-                    return NetxPageViewHolder(it)
+            LayoutInflater.from(parent.context)
+                .inflate(R.layout.item_list_movie_next_page, parent, false).apply {
+                    return NetxPageViewHolder(this)
                 }
         }
     }
@@ -99,9 +102,13 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                     holder.itemView.animation = animation
                 }
                 list[position]?.also { movie ->
-                    holder.bind(movie)
+                    holder.binding.movie = movie
                     holder.itemView.setOnClickListener {
-                        Toast.makeText(it.context,"${movie.title} has clicked",Toast.LENGTH_SHORT).show()
+                        Toast.makeText(
+                            it.context,
+                            "${movie.title} has clicked",
+                            Toast.LENGTH_SHORT)
+                            .show()
                     }
 
                 }
@@ -150,13 +157,8 @@ class MoviesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
         }
     }
 
-    inner class ItemViewHolder(val binding : ItemListMovieBinding)
-        : RecyclerView.ViewHolder(binding.root){
-
-        fun bind(movie : Movie){
-            binding.movie = movie
-        }
-    }
+    inner class ItemViewHolder(
+        val binding : ItemListMovieBinding) : RecyclerView.ViewHolder(binding.root)
 
     inner class NetxPageViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView)
 }
