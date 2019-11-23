@@ -9,7 +9,5 @@ import androidx.annotation.StringRes
 interface BaseView {
     fun showMessage(message : String)
     fun showMessage(@IdRes @StringRes resId : Int)
-    fun onError(code : Int)
     fun isNetworkConnected() : Boolean
-    fun onConnectionStatusChange()
 }

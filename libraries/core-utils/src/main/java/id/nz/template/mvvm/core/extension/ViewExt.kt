@@ -17,11 +17,11 @@ import com.bumptech.glide.request.RequestOptions
  */
 
 fun Activity.toast(message : String?){
-    Toast.makeText(this,message,Toast.LENGTH_LONG).show()
+    Toast.makeText(this,message,Toast.LENGTH_SHORT).show()
 }
 
 fun Fragment.toast(message: String?){
-    Toast.makeText(context,message,Toast.LENGTH_LONG).show()
+    Toast.makeText(context,message,Toast.LENGTH_SHORT).show()
 }
 
 fun View.visible(){
@@ -36,6 +36,7 @@ fun View.gone(){
     visibility = View.GONE
 }
 
+@BindingAdapter("textOrGone")
 fun TextView.textOrGone(input : CharSequence?){
     input?.run {
         text = input
@@ -43,7 +44,7 @@ fun TextView.textOrGone(input : CharSequence?){
     } ?: gone()
 }
 
-@BindingAdapter("app:fromUrl")
+@BindingAdapter("fromUrl")
 fun ImageView.fromUrl(url : String){
     Glide.with(context)
         .load(url)
@@ -51,7 +52,7 @@ fun ImageView.fromUrl(url : String){
         .into(this)
 }
 
-@BindingAdapter("app:fromUrlCircle")
+@BindingAdapter("fromUrlCircle")
 fun ImageView.fromUrlCircle(url : String){
     Glide.with(context)
         .load(url)
@@ -61,7 +62,7 @@ fun ImageView.fromUrlCircle(url : String){
         .into(this)
 }
 
-@BindingAdapter("app:fromUrl")
+@BindingAdapter("fromUrl")
 fun AppCompatImageView.fromUrl(url : String){
     Glide.with(context)
         .load(url)
@@ -69,7 +70,7 @@ fun AppCompatImageView.fromUrl(url : String){
         .into(this)
 }
 
-@BindingAdapter("app:fromUrlCircle")
+@BindingAdapter("fromUrlCircle")
 fun AppCompatImageView.fromUrlCircle(url : String){
     Glide.with(context)
         .load(url)

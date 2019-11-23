@@ -1,4 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">IMDB Movie</string>
+    <string name="home_title">Hello, what do you want to watch ?</string>
+    <string name="action_see_all">See all</string>
+    <string name="title_top_rated">Top Rated</string>
+    <string name="title_recommended_for_you">Recommended For You</string>
+    <string name="hint_search">Search</string>
+    <string name="title_home">Hello, what do you want to watch ?</string>
 </resources>

@@ -21,6 +21,27 @@ android {
 dependencies {
 
     implementation AndroidX.appCompat
+    implementation AndroidX.ktx
+    implementation AndroidX.constraintLayout
+    implementation AndroidX.material
+    implementation AndroidX.coordinatorLayout
+    implementation AndroidX.recyclerView
+
+    kapt AndroidX.dataBindingCompiler
+
+    implementation Skeleton.skeleton
+    implementation Skeleton.shimmer
+
+    implementation Media.glide
+
+    implementation Retrofit.retrofit
+    implementation Retrofit.gsonConverter
+    implementation Retrofit.okHttpLogging
+    implementation Retrofit.rxAdapter
+
+    implementation ReactiveX.rxJava
+    implementation ReactiveX.rxAndroid
+    implementation ReactiveX.rxKotlin
 
     implementation project(Modules.coreUtils)
 }

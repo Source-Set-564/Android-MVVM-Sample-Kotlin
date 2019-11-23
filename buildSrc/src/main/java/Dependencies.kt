@@ -29,6 +29,13 @@ object Versions{
     val cardview = "1.0.0"
     val recyclerview = "1.0.0"
     val ktx = "1.1.0"
+    val coordinatorLayout = "1.0.0"
+
+    val dataBindingCompiler = "3.1.4"
+
+    //Skeleton
+    val skeleton = "1.1.2"
+    val shimmer = "2.1.0"
 
     //jetpack
     val lifecycle = "2.1.0"
@@ -48,6 +55,9 @@ object Versions{
     val rxandroid = "2.1.1"
     val rxkotlin = "2.4.0"
 
+    //DI
+    val dagger2 = "2.25.2"
+
     //testing
     val junit = "4.12"
     val runner = "1.2.0"
@@ -63,6 +73,13 @@ object AndroidX{
     val gson = "com.google.code.gson:gson:${Versions.gson}"
     val material = "com.google.android.material:material:${Versions.material}"
     val recyclerView = "androidx.recyclerview:recyclerview:${Versions.recyclerview}"
+    val coordinatorLayout = "androidx.coordinatorlayout:coordinatorlayout:${Versions.coordinatorLayout}"
+    val dataBindingCompiler = "com.android.databinding:compiler:${Versions.dataBindingCompiler}"
+}
+
+object Skeleton{
+    val skeleton = "com.ethanhua:skeleton:${Versions.skeleton}"
+    val shimmer = "io.supercharge:shimmerlayout:${Versions.shimmer}"
 }
 
 object Jetpack{
@@ -86,6 +103,14 @@ object ReactiveX{
 object Media {
     val glide = "com.github.bumptech.glide:glide:${Versions.glide}"
 //    val compiler = "com.github.bumptech.glide:compiler:${Versions.glide}"
+}
+
+object Injections{
+    val dagger2 = "com.google.dagger:dagger:${Versions.dagger2}"
+    val dagger2Android = "com.google.dagger:dagger-android:${Versions.dagger2}"
+    val dagger2AndroidSupport = "com.google.dagger:dagger-android-support:${Versions.dagger2}"
+    val dagger2Compiler = "com.google.dagger:dagger-compiler:${Versions.dagger2}"
+    val dagger2Processor = "com.google.dagger:dagger-android-processor:${Versions.dagger2}"
 }
 
 object Testing {

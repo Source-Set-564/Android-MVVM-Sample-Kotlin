@@ -49,6 +49,11 @@ dependencies {
 
     implementation AndroidX.kotlin
 
+    implementation Injections.dagger2
+    implementation Injections.dagger2Android
+    kapt Injections.dagger2Compiler
+    kapt Injections.dagger2Processor
+
     //test
     testImplementation Testing.jUnit
     androidTestImplementation Testing.testRunner

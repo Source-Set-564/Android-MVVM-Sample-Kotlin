@@ -58,7 +58,10 @@ object RetrofitUtils{
      * @return OkHttpClient instance
      */
     @JvmStatic
-    fun okHttpClient(interceptor: Interceptor, logger : Boolean) : OkHttpClient{
+    fun okHttpClientWithInterceptor(
+        interceptor: Interceptor,
+        level : HttpLoggingInterceptor.Level? = null) : OkHttpClient{
+
         val bulider = OkHttpClient.Builder()
             .readTimeout(1,TimeUnit.MINUTES)
             .connectTimeout(1,TimeUnit.MINUTES)
@@ -66,13 +69,13 @@ object RetrofitUtils{
             .addInterceptor(interceptor)
 
         if(interceptor is HttpLoggingInterceptor){
-            throw IllegalArgumentException("don't send logging interceptor, use true on second" +
+            throw IllegalArgumentException("don't send logging interceptor, use level on second" +
                     " parameter if you want to enable logger")
         }
 
-        if(logger) {
+        level?.also { logLevel ->
             val loggingInterceptor = HttpLoggingInterceptor()
-            loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+            loggingInterceptor.level = logLevel
 
             bulider.addInterceptor(loggingInterceptor)
         }
@@ -82,22 +85,28 @@ object RetrofitUtils{
 
     /**
      * This method to create OkHttpClient with add interceptor HEADER or Query for an api key
-     * @param params used to parameter key name
+     * @param param used to parameter key name
      * @param apiKey used as value apiKye
-     * @param logger used to enabled logging interceptor OkHttpClient, Level.Body
+     * @param method used as how the key is send, HEADER or QUERY
+     * @param level used to enabled logging interceptor OkHttpClient, Level.Body
      * @return OkHttpClient instance
      */
     @JvmStatic
-    fun okHttpClient(params: String, apiKey : String, method: KeyParameter, logger : Boolean) : OkHttpClient{
+    fun okHttpClientWithKey(
+        param: String,
+        apiKey : String,
+        method: KeyParameter,
+        level : HttpLoggingInterceptor.Level? = null) : OkHttpClient{
+
         val builder = OkHttpClient.Builder()
             .readTimeout(1,TimeUnit.MINUTES)
             .connectTimeout(1,TimeUnit.MINUTES)
             .pingInterval(30,TimeUnit.SECONDS)
-            .addInterceptor(RequestQueryInterceptor(params,apiKey,method))
+            .addInterceptor(RequestInterceptor(param,apiKey,method))
 
-        if(logger) {
+        level?.also { logLevel ->
             val interceptor = HttpLoggingInterceptor()
-            interceptor.level = HttpLoggingInterceptor.Level.BODY
+            interceptor.level = logLevel
 
             builder.addInterceptor(interceptor)
         }
@@ -105,7 +114,7 @@ object RetrofitUtils{
         return builder.build()
     }
 
-    internal class RequestQueryInterceptor(
+    internal class RequestInterceptor(
         val params : String,
         val key : String,
         val parameters : KeyParameter) : Interceptor{

@@ -58,28 +58,19 @@ dependencies {
     implementation AndroidX.kotlin
     implementation AndroidX.appCompat
     implementation AndroidX.constraintLayout
-    implementation AndroidX.recyclerView
     implementation AndroidX.material
-    implementation AndroidX.cardView
+    implementation AndroidX.coordinatorLayout
     implementation AndroidX.ktx
-    implementation AndroidX.gson
-
-    implementation Jetpack.lifecycle
-    kapt Jetpack.lifecycleCompiler
-
-    implementation Media.glide
-
-    implementation Retrofit.retrofit
-    implementation Retrofit.gsonConverter
-    implementation Retrofit.okHttpLogging
-    implementation Retrofit.rxAdapter
-
-    implementation ReactiveX.rxJava
-    implementation ReactiveX.rxAndroid
-    implementation ReactiveX.rxKotlin
 
     //test
     testImplementation Testing.jUnit
     androidTestImplementation Testing.testRunner
     androidTestImplementation Testing.espresso
+
+    implementation project(Modules.movie)
+    implementation project(Modules.coreUtils)
+}
+
+repositories {
+    google()
 }
